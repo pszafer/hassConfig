@@ -1,0 +1,22 @@
+light.yeelight_livingroom:
+  icon: mdi:sofa
+light.yeelight_livingroom2:
+  icon: mdi:sofa
+light.choinka_light:
+  icon: mdi:pine-tree
+light.led_light:
+  icon: mdi:leaf
+light.yeelight_sypialnia:
+  icon: mdi:hotel
+light.bedside:
+  icon: mdi:lighthouse
+light.yeelight_biurko:
+  icon: mdi:desk-lamp
+media_player.onkyo:
+  device_class: speaker
+media_player.epson:
+  device_class: speaker
+person.pati:
+  entity_picture: /local/pati.png
+person.pawel:
+  entity_picture: /local/pawel.png

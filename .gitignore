@@ -1,0 +1,18 @@
+!*.yaml
+!.gitignore
+!*.md
+
+html5_push_registrations.conf
+*.swp
+*.swo
+*.log
+
+# Ignore folders.
+.storage
+.cloud
+.google.token
+
+# Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
+ip_bans.yaml
+secrets.yaml
+known_devices.yaml

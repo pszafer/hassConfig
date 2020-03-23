@@ -1,0 +1,364 @@
+title: Home
+views:
+  - id: 0  # Automatically created id
+    icon: mdi:map
+    title: Mapa
+    panel: false
+    cards:
+      - id: ab3a57165875467792e05af2a9e99b06  # Automatically created id
+        type: picture-elements
+        image: /local/map6.png
+        elements:
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.yeelight_sypialnia
+            style:
+              top: 78%
+              left: 21%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.bedside
+            style:
+              top: 90%
+              left: 42%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.yeelight_biurko
+            style:
+              top: 90%
+              left: 60%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: cover.sypialnia
+            style:
+              top: 94%
+              left: 35%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: cover.maly_pokoj
+            style:
+              top: 94%
+              left: 53%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.korytarz
+            style:
+              top: 65%
+              left: 20%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: script.vacuum_hall
+            style:
+              top: 65%
+              left: 25%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.kuchnia_gora
+            style:
+              top: 49%
+              left: 65%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.kuchnia_dol
+            style:
+              top: 49%
+              left: 70%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.kuchnia_stol_lewa
+            style:
+              top: 40%
+              left: 65%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.kuchnia_stol_prawa
+            style:
+              top: 42%
+              left: 68%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.yeelight_livingroom2
+            style:
+              top: 30%
+              left: 88%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.yeelight_livingroom
+            style:
+              top: 20%
+              left: 91%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: cover.roleta_balkon_1
+            style:
+              top: 13%
+              left: 76%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: cover.roleta_balkon_2
+            style:
+              top: 14%
+              left: 63%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: cover.okno_salon
+            style:
+              top: 16%
+              left: 50%
+          - type: image
+            entity: sensor.maly_pokoj_state
+            style:
+              top: 80%
+              left: 56%
+              width: 20%
+            state_image:
+              "on_open": /local/malypokoj_onopen.jpg
+              "off_open": /local/malypokoj_offopen.jpg
+              "on_closed": /local/malypokoj_onclosed.jpg
+              "off_closed": /local/malypokoj_offclosed.jpg
+          - type: icon
+            icon: mdi:radio
+            tap_action:
+              action: toggle
+            entity: switch.radio
+            style:
+              top: 30%
+              left: 50%
+      - id: be976b57c7ce4cb1bc4b708c10ae8255  # Automatically created id
+        type: gauge
+        entity: sensor.temperature
+  - id: 1  # Automatically created id
+    icon: mdi:ceiling-light
+    title: Ha
+    cards:
+      - type: entities
+        id: ebbd96a957d94662ae5e11572637d360  # Automatically created id
+        title: Lampy Salon
+        show_header_toggle: true
+        entities:
+          - entity: light.yeelight_livingroom
+            name: Lampa Sofa Lewa
+          - entity: light.yeelight_livingroom2
+            name: Lampa Sofa Prawa
+        theme: happy
+      - id: 275c3a1e7a564bbfbd584af2e3d7c9f9  # Automatically created id
+        type: picture-entity
+        camera_image: camera.ps3_eye
+        entity: light.yeelight_livingroom
+      - id: 0e9112c110164f5393e3fd0c6dfa4c88  # Automatically created id
+        type: picture-glance
+        title: Maly pokoj
+        entities:
+          - light.yeelight_biurko
+          - entity: switch.malypokojcoveropen
+            icon: mdi:window-closed
+            name: Roleta
+        aspect_ratio: 16x9
+        state_image:
+          "on_open": /local/malypokoj_onopen.jpg
+          "off_open": /local/malypokoj_offopen.jpg
+          "on_closed": /local/malypokoj_onclosed.jpg
+          "off_closed": /local/malypokoj_offclosed.jpg
+        entity:
+          - sensor.maly_pokoj_state
+      - type: entities
+        id: 2415609e05d141be99a41aa9bac1c391  # Automatically created id
+        title: Sypialnia
+        show_header_toggle: true
+        entities:
+          - entity: light.yeelight_sypialnia
+            name: Listwa podlogowa
+          - entity: light.bedside
+            name: Lampa nocna
+          - entity: light.sypialnia_gora
+      - id: b81332047c084940a3ea75abd5b328ca  # Automatically created id
+        type: entities
+        title: Hol
+        show_header_toggle: true
+        entities:
+          - entity: light.korytarz
+            name: Korytarz
+      - id: cd46f2b7167b42d7887c42acfd4b5b6b  # Automatically created id
+        type: entities
+        title: Kuchnia
+        show_header_toggle: true
+        entities:
+          - entity: light.kuchnia_dol
+            name: Kuchnia Dol
+          - entity: light.kuchnia_gora
+            name: Kuchnia Gora
+          - entity: light.kuchnia_stol_lewa
+            name: Kuchnia Stol Lewa
+          - entity: light.kuchnia_stol_prawa
+            name: Kuchnia Stol Prawa
+      - id: 8b9323290f9c4fe2aeb58652b658a7e2  # Automatically created id
+        type: entities
+        title: Maly pokoj
+        show_header_toggle: true
+        entities:
+          - entity: light.yeelight_biurko
+            name: Biurko
+      - id: 24270968bf934aa5a466648a6c356c29  # Automatically created id
+        type: entities
+        title: all lights
+        show_header_toggle: true
+        entities:
+          - light.korytarz
+          - light.kuchnia_dol
+          - light.kuchnia_gora
+          - light.kuchnia_stol_lewa
+          - light.kuchnia_stol_prawa
+          - light.yeelight_livingroom
+          - light.yeelight_livingroom2
+          - light.yeelight_sypialnia
+          - light.yeelight_biurko
+  - id: 2  # Automatically created id
+    icon: mdi:window-closed
+    title: Ha
+    cards:
+      - id: 5b7da98668ca4df889c17ca79b3309ac  # Automatically created id
+        type: entities
+        title: Salon
+        show_header_toggle: true
+        entities:
+          - cover.roleta_balkon_1
+          - cover.roleta_balkon_2
+          - cover.okno_salon
+      - id: 06c40a7423724bfbb4c59f2a5c05b1e1  # Automatically created id
+        type: entities
+        title: Maly pokoj
+        show_header_toggle: true
+        entities:
+          - cover.roleta_balkon_1
+          - cover.roleta_balkon_2
+          - cover.okno_salon
+  - id: 3  # Automatically created id
+    title: Bajzel
+    cards:
+      - id: 9fcc6e2f51d24e67a9f640db992e224d  # Automatically created id
+        type: entities
+        title: Salon
+        show_header_toggle: true
+        entities:
+          - cover.roleta_balkon_1
+          - cover.roleta_balkon_2
+          - cover.okno_salon
+      - id: bc7bc6d2569c46c9a5e692c3d5e0330a  # Automatically created id
+        type: vertical-stack
+        cards:
+          - type: conditional
+            conditions:
+              - entity: cover.maly_pokoj
+                state_not: 'sopen'
+            card:
+              type: entities
+              entities:
+                - light.yeelight_biurko
+                - switch.malypokojcoveropen
+          - type: media-control
+            entity: media_player.epson
+          - type: media-control
+            entity: media_player.elec
+          - type: media-control
+            entity: media_player.onkyo
+      - id: fabc49c71b3846c2bfd96a9ba6869eac  # Automatically created id
+        type: vertical-stack
+        title: Rolety Salon
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - cover.living_room_windows
+                  - cover.balcony_windows
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - cover.roleta_balkon_1
+                  - cover.roleta_balkon_2
+                  - cover.okno_salon
+      - id: 160956142d994857913bd16143afa45b  # Automatically created id
+        type: entities
+        title: Salon
+        show_header_toggle: true
+        entities:
+          - cover.roleta_balkon_1
+          - cover.roleta_balkon_2
+          - cover.okno_salon
+          - light.yeelight_livingroom
+          - light.yeelight_livingroom2
+          - cover.living_room_windows
+      - id: 1210d40a959640198c005f46a6d17c8a  # Automatically created id
+        type: entities
+        title: all scripts
+        show_header_toggle: true
+        entities:
+          - script.zachod
+          - script.1531656433052
+          - script.zachod_salon
+      - id: a0147283b5624cf69e23845f7ac35702  # Automatically created id
+        type: entities
+        title: Rolety
+        show_header_toggle: true
+        entities:
+          - cover.maly_pokoj
+          - cover.okno_salon
+          - cover.roleta_balkon_1
+          - cover.roleta_balkon_2
+          - cover.sypialnia
+          - cover.balcony_windows
+          - cover.covers
+          - cover.living_room_windows
+      - id: 00a34507de0e420b8d2f9b6e6187c2cf  # Automatically created id
+        type: entities
+        title: Lampy Salon
+        show_header_toggle: true
+        entities:
+          - light.yeelight_livingroom
+          - light.yeelight_livingroom2
+      - id: d78548fd9cf540889649debea3912bbe  # Automatically created id
+        type: entities
+        title: all automations
+        show_header_toggle: true
+        entities:
+          - automation.motion_czluchowska
+          - automation.peugeot_bez_pati
+          - automation.sprawdz_rolety_na_starcie
+          - automation.wlacz_nc2
+          - automation.wlacz_lampe_gdy_nc
+          - automation.wylaczenie_gdy_tv
+          - automation.del_wlacz_gdy_ciemno_i_tv
+          - automation.del_wlacz_gdy_ciemno_i_tv_juz_wlaczony
+          - automation.alarm_sypialnia
+      - id: 5386857e57ba40f9afca5253a02f8c4e  # Automatically created id
+        type: entities
+        title: all devices
+        show_header_toggle: true
+        entities:
+          - device_tracker.pawel_sony
+          - device_tracker.pawel_s7
+          - device_tracker.pati_s6
+          - device_tracker.peugeot_peugeot
+      - id: 4ab6c1a63aac4f0790c8986c81e4900c  # Automatically created id
+        type: entities
+        title: all vacuum cleaners
+        show_header_toggle: true
+        entities:
+          - vacuum.xiaomi_vacuum_cleaner

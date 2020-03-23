@@ -1,0 +1,6 @@
+- platform: generic_thermostat
+  name: Temperatura
+  heater: input_boolean.fake_heater
+  target_sensor: sensor.temperature
+  initial_operation_mode: "off"
+  target_temp: 21

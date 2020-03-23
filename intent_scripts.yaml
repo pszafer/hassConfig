@@ -1,0 +1,56 @@
+GetKitchenLightStatus:
+  speech:
+    text: "Temperature is very high right now"
+
+TurnLights:
+  speech:
+    text: "Turning {{ Room }} lights {{ OnOff }} - light.{{ Room | replace(' ', '_') }}_lights"
+
+  action:
+    - service_template: >
+        {%- if OnOff == "on" -%}
+          light.turn_on
+        {%- else -%}
+          light.turn_off
+        {%- endif -%}
+      data_template:
+        entity_id: "light.{{ Room | replace(' ', '_') }}_lights"
+
+TurnLights2:
+  speech:
+    text: "Got it. Turning {{ OnOff }} {{ WhichLight }} lights in the {{ Room }}."
+  action:
+    - service_template: >
+        {%- if OnOff == "on" -%}
+          light.turn_on
+        {%- else -%}
+          light.turn_off
+        {%- endif -%}
+      data_template:
+        entity_id: "light.{{ Room | replace(' ', '_') }}_{{ WhichLight | replace(' ', '_') }}_lights"
+
+TurnCover:
+  speech:
+    text: "Got it. {{ OpenClose }} cover in the {{ Room }}."
+  action:
+    - service_template: >
+        {%- if OnOff == "open" -%}
+          cover.open
+        {%- else -%}
+          cover.close
+        {%- endif -%}
+      data_template:
+        entity_id: "cover.{{ Room | replace(' ', '_') }}_windows"
+
+TurnCover2:
+  speech:
+    text: "Got it. {{ OpenClose }} {{ WhichCover }} cover in the {{ Room }}."
+  action:
+    - service_template: >
+        {%- if OnOff == "open" -%}
+          cover.open
+        {%- else -%}
+          cover.close
+        {%- endif -%}
+      data_template:
+              entity_id: "cover.{{ Room | replace(' ', '_') }}_{{ WhichCover | replace(' ', '_') }}_window"

@@ -1,0 +1,77 @@
+- platform: mqtt
+  name: "Roleta Balkon 1"
+  command_topic: "cmnd/roleta_balkon1/backlog"
+  position_topic: "stat/roleta_balkon1/SHUTTER1"
+  availability_topic: "tele/roleta_balkon1/LWT"
+  set_position_topic: "cmnd/roleta_balkon1/shutterposition"
+  payload_open: "shutteropen"
+  payload_close: "shutterclose"
+  payload_stop: "shutterstop"
+  position_open: 100
+  position_closed: 0
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  optimistic: false
+- platform: mqtt
+  name: "Roleta Balkon 2"
+  command_topic: "cmnd/roleta_balkon2/backlog"
+  position_topic: "stat/roleta_balkon2/SHUTTER1"
+  availability_topic: "tele/roleta_balkon2/LWT"
+  set_position_topic: "cmnd/roleta_balkon2/shutterposition"
+  payload_open: "shutteropen"
+  payload_close: "shutterclose"
+  payload_stop: "shutterstop"
+  position_open: 100
+  position_closed: 0
+  payload_available: "Online"
+  optimistic: false
+  payload_not_available: "Offline"
+- platform: mqtt
+  name: "Okno Salon"
+  command_topic: "cmnd/roleta_okno1/backlog"
+  position_topic: "stat/roleta_okno1/SHUTTER1"
+  availability_topic: "tele/roleta_okno1/LWT"
+  set_position_topic: "cmnd/roleta_okno1/shutterposition"
+  payload_open: "shutteropen"
+  payload_close: "shutterclose"
+  payload_stop: "shutterstop"
+  position_open: 100
+  position_closed: 0
+  payload_available: "Online"
+  optimistic: false
+  payload_not_available: "Offline"
+- platform: mqtt
+  name: "TEST"
+  command_topic: "cmnd/roleta_test/backlog"
+  position_topic: "stat/roleta_test/SHUTTER1"
+  availability_topic: "tele/roleta_test/LWT"
+  set_position_topic: "cmnd/roleta_test/shutterposition"
+  payload_open: "shutteropen"
+  payload_close: "shutterclose"
+  payload_stop: "shutterstop"
+  position_open: 1
+  position_closed: 0
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  optimistic: true
+- platform: group
+  name: covers
+  entities:
+    - cover.roleta_balkon_1
+    - cover.roleta_balkon_2
+    - cover.okno_salon
+    - cover.sypialnia
+    - cover.maly_pokoj
+
+- platform: group
+  name: living room windows
+  entities:
+    - cover.roleta_balkon_1
+    - cover.roleta_balkon_2
+    - cover.okno_salon
+
+- platform: group
+  name: balcony windows
+  entities:
+    - cover.roleta_balkon_1
+    - cover.roleta_balkon_2

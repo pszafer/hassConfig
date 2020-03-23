@@ -1,0 +1,4 @@
+- platform: xiaomi_miio
+  host: 192.168.12.52
+  token: !secret air_token
+  model: zhimi.airpurifier.v3

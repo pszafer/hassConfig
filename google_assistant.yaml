@@ -1,0 +1,148 @@
+project_id: homeassistantmay2019
+api_key: !secret google_assistant
+expose_by_default: false
+secure_devices_pin: allowed
+exposed_domains:
+  - light
+  - group
+  - cover
+  - media_player
+  - script
+  - scene
+  - switch
+  - camera
+entity_config:
+  light.yeelight_livingroom:
+    name: left sofa light
+    expose: true
+    room: living room
+  light.yeelight_livingroom2:
+    name: right sofa light
+    expose: true
+    room: living room
+  light.yeelight_biurko:
+    name: desk light
+    expose: true
+    room: office
+    aliases:
+      - desk lights
+      - desk lamp
+  light.yeelight_sypialnia:
+    name: bedroom light
+    expose: true
+    room: bedroom
+    #  light.bedside:
+    #    name: bedside light
+    #    expose: true
+    #    room: bedroom
+  light.korytarz:
+    name: hallway lights
+    expose: true
+    room: hallway
+    aliases:
+      - hallway light
+  light.kuchnia_stol_prawa:
+    name: right table lights
+    expose: true
+    room: kitchen
+  light.kuchnia_stol_lewa:
+    name: left table lights
+    expose: true
+    room: kitchen
+  light.kichen_table_lights:
+    name: kitchen table lights
+    expose: true
+    room: kitchen
+  light.kuchnia_gora:
+    name: kitchen top lights
+    expose: true
+    room: kitchen
+  light.kuchnia_dol:
+    name: kitchen bottom lights
+    expose: true
+    room: kitchen
+  cover.maly_pokoj:
+    name: office window
+    expose: true
+    room: office
+    aliases:
+      - office windows
+  cover.roleta_balkon_1:
+    name: right balcony
+    expose: true
+    room: living room
+  cover.roleta_balkon_2:
+    name: left balcony
+    expose: true
+    room: living room
+  cover.okno_salon:
+    name: window
+    expose: true
+    room: living room
+  cover.balcony_windows:
+    name: balcony windows
+    expose: true
+    room: living room
+  cover.sypialnia:
+    name: bedroom window
+    expose: true
+    room: bedroom
+  media_player.onkyo:
+    name: onkyo
+    expose: true
+    room: living room
+  media_player.epson:
+    name: epson
+    expose: true
+    room: living room
+    aliases:
+      - projector
+  climate.temperatura:
+    name: thermostat
+    expose: true
+    room: living room
+  switch.radio:
+    name: radio
+    expose: true
+    room: living room
+  switch.vacuum_hallway:
+    name: vacuum hallway
+    expose: true
+    room: hallway
+  switch.vacuum_smallroom:
+    name: vacuum office
+    expose: true
+    room: office
+    aliases:
+      - vacuum small room
+  switch.vacuum_mainroom:
+    name: vacuum living room
+    expose: true
+  switch.vacuum_bathroom:
+    name: vacuum bathroom
+    expose: true
+    room: bathroom
+  switch.vacuum_bedroom:
+    name: vacuum bedroom
+    expose: true
+    room: bedroom
+  switch.vacuum_kitchen:
+    name: vacuum kitchen
+    expose: true
+    room: kitchen
+  script.zachod_bedroom:
+    name: sunset
+    expose: true
+    room: bedroom
+  script.zachod_salon:
+    name: sunset
+    expose: true
+    room: living room
+  switch.switch:
+    name: podlewanie
+    expose: true
+    room: balkon
+  switch.movie_time:
+    name: movie time
+    expose: true
+    room: living room

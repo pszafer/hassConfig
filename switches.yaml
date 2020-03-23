@@ -1,0 +1,175 @@
+
+#- platform: mqtt
+#  name: "Living Room"
+#  state_topic: "home/sonoff/kitchen/1/stat"
+#  command_topic: "home/sonoff/kitchen/1"
+#  qos: 0
+#  payload_on: "on"
+#  payload_off: "off"
+#  retain: true
+#
+- platform: template
+  switches:
+    radio:
+      value_template: "{{ is_state('sensor.living_room_onkyo_source', 'Radio') }}"
+      turn_on:
+        service: script.turn_on
+        entity_id: script.onkyo_radio_on
+      turn_off:
+        service: script.turn_on
+        entity_id: script.onkyo_radio_off
+    vacuum_hallway:
+      value_template: >
+        {% set x = state_attr('vacuum.rockrobo', 'zoneStatus') -%}
+        {% set x = x if x != None else [] %}
+        {% set y = "hallway" -%}
+        {% if y in x -%}
+          True
+        {%- else -%}
+          False
+        {%- endif %}
+      turn_on:
+        service: input_select.select_option
+        data:
+          entity_id: input_select.vacuum_new_state
+          option: hallway
+      turn_off:
+        service: vacuum.pause
+        data:
+          entity_id: vacuum.rockrobo 
+    vacuum_mainroom:
+      value_template: >
+        {% set x = state_attr('vacuum.rockrobo', 'zoneStatus') -%}
+        {% set x = x if x != None else [] %}
+        {% set y = "mainroom" -%}
+        {% if y in x -%}
+          True
+        {%- else -%}
+          False
+        {%- endif %}
+      turn_on:
+        service: input_select.select_option
+        data:
+          entity_id: input_select.vacuum_new_state
+          option: mainroom
+      turn_off:
+        service: vacuum.pause
+        data:
+          entity_id: vacuum.rockrobo
+    vacuum_bedroom:
+      value_template: >
+        {% set x = state_attr('vacuum.rockrobo', 'zoneStatus') -%}
+        {% set x = x if x != None else [] %}
+        {% set y = "bedroom" -%}
+        {% if y in x -%}
+          True
+        {%- else -%}
+          False
+        {%- endif %}
+      turn_on:
+        service: input_select.select_option
+        data:
+          entity_id: input_select.vacuum_new_state
+          option: bedroom
+      turn_off:
+        service: vacuum.pause
+        data:
+          entity_id: vacuum.rockrobo
+    vacuum_bathroom:
+      value_template: >
+        {% set x = state_attr('vacuum.rockrobo', 'zoneStatus') -%}
+        {% set x = x if x != None else [] %}
+        {% set y = "bathroom" -%}
+        {% if y in x -%}
+          True
+        {%- else -%}
+          False
+        {%- endif %}
+      turn_on:
+        service: input_select.select_option
+        data:
+          entity_id: input_select.vacuum_new_state
+          option: bathroom
+      turn_off:
+        service: vacuum.pause
+        data:
+          entity_id: vacuum.rockrobo
+    vacuum_smallroom:
+      value_template: >
+        {% set x = state_attr('vacuum.rockrobo', 'zoneStatus') -%}
+        {% set x = x if x != None else [] %}
+        {% set y = "smallroom" -%}
+        {% if y in x -%}
+          True
+        {%- else -%}
+          False
+        {%- endif %}
+      turn_on:
+        service: input_select.select_option
+        data:
+          entity_id: input_select.vacuum_new_state
+          option: smallroom
+      turn_off:
+        service: script.vacuum_pause
+    vacuum_kitchen:
+      value_template: >
+        {% set x = state_attr('vacuum.rockrobo', 'zoneStatus') -%}
+        {% set x = x if x != None else [] %}
+        {% set y = "kitchen" -%}
+        {% if y in x -%}
+          True
+        {%- else -%}
+          False
+        {%- endif %}
+      turn_on:
+        service: input_select.select_option
+        data:
+          entity_id: input_select.vacuum_new_state
+          option: kitchen
+      turn_off:
+        service: vacuum.pause
+        data:
+          entity_id: vacuum.rockrobo
+
+# vacuum_bedroom:
+#       value_template: "{{ is_state('input_select.vacuum_state', 'bedroom') }}"
+#       turn_on:
+#         service: input_select.select_option
+#         data:
+#           entity_id: input_select.vacuum_target
+#           option: "bedroom"
+#       turn_off:
+#         service: script.vacuum_pause 
+#     vacuum_bathroom:
+#       value_template: "{{ is_state('input_select.vacuum_state', 'bathroom') }}"
+#       turn_on:
+#         service_template: >
+#           {% if states.vacuum.xiaomi_vacuum_cleaner.state == "paused" and states.input_select.vacuum_state.state == "bathroom_paused" %}
+#             script.vacuum_resume
+#           {% else %}
+#             script.vacuum_bathroom
+#           {% endif %}
+#       turn_off:
+#         service: script.vacuum_pause 
+#     vacuum_smallroom:
+#       value_template: "{{ is_state('input_select.vacuum_state', 'smallroom') }}"
+#       turn_on:
+#         service_template: >
+#           {% if states.vacuum.xiaomi_vacuum_cleaner.state == "paused" and states.input_select.vacuum_state.state == "smallroom_paused" %}
+#             script.vacuum_resume
+#           {% else %}
+#             script.vacuum_smallroom
+#           {% endif %}
+#       turn_off:
+#         service: script.vacuum_pause
+#     vacuum_kitchen:
+#       value_template: "{{ is_state('input_select.vacuum_state', 'kitchen') }}"
+#       turn_on:
+#         service_template: >
+#           {% if states.vacuum.xiaomi_vacuum_cleaner.state == "paused" and states.input_select.vacuum_state.state == "kitchen_paused" %}
+#             script.vacuum_resume
+#           {% else %}
+#             script.vacuum_kitchen
+#           {% endif %}
+#       turn_off:
+#         service: script.vacuum_pause

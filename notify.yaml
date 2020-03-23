@@ -1,0 +1,22 @@
+- platform: html5
+  vapid_pub_key: !secret vapid_pub_key
+  vapid_prv_key: !secret vapid_prv_key
+  vapid_email: !secret my_email
+
+- platform: smtp
+  name: gmail
+  sender_name: HASS
+  recipient:
+    - !secret my_email
+  username: !secret gmail_velo_username
+  password: !secret gmail
+  sender: !secret sender_smtp
+  server: smtp.gmail.com
+
+- platform: telegram
+  name: telegroup
+  chat_id: !secret telegram_chat_id_2
+
+- platform: telegram
+  name: telepawel
+  chat_id: !secret telegram_chat_id_1

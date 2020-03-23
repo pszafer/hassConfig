@@ -1,0 +1,219 @@
+- platform: yr
+  name: Weather
+  forecast: 24
+  monitored_conditions:
+    - temperature
+    - symbol
+    - precipitation
+    - windSpeed
+    - pressure
+    - windDirection
+    - humidity
+    - fog
+    - cloudiness
+    - lowClouds
+    - mediumClouds
+    - highClouds
+    - dewpointTemperature
+
+- platform: darksky
+  api_key: !secret dark_sky
+  language: pl
+  forecast:
+    - 0
+  monitored_conditions:
+    - summary
+    - icon
+    - temperature
+    - apparent_temperature
+    - cloud_cover
+
+- platform: template
+  sensors:
+    odkurzanie_pomieszczen:
+      friendly_name: Historia odkurzania
+      value_template: >
+        {% set x = state_attr('vacuum.rockrobo', 'zoneStatus') %}
+        {% set x = x if (x is string or x == None) else x[0] %}
+        {% if x -%}
+          {{ x }}
+        {%- else -%}
+          WAITING
+        {%- endif %}
+    swiatlo_korytarz:
+      value_template: '{{ (states.sensor.lampa_korytarz.state | float ) * ((4 * 3.2 + 1 * 2.5) / 1000) }}'
+      friendly_name: 'Korytarz KWH'
+      unit_of_measurement: 'kwH'
+    swiatlo_maly_pokoj:
+      value_template: '{{ (states.sensor.lampa_maly_pokoj.state | float ) * 6 / 1000 }}'
+      friendly_name: 'Maly pokoj KWH'
+      unit_of_measurement: 'kwH'
+    living_room_onkyo_source:
+      value_template: '{{ states.media_player.onkyo.attributes["source"] }}'
+      friendly_name: 'Living Room Source'
+    day_night:
+      friendly_name: "Is day by Sun"
+      value_template: >-
+        {% if is_state('sun.sun', 'below_horizon') -%}1
+        {% else %} 0 {% endif %}
+    dark_outside:
+      value_template: >
+        {% if (states.sun.sun.attributes.elevation | int < 3) %}true
+        {% elif ( (states.sun.sun.attributes.elevation | int < 4.5) and (states.sensor.dark_sky_cloud_coverage.state | int > 80)) %}true
+        {% elif ( (states.sun.sun.attributes.elevation | int < 6.5) and (states.sensor.dark_sky_cloud_coverage.state | int > 85)) %}true
+        {% elif (states.sensor.dark_sky_cloud_coverage.state | int > 90) %}true
+        {% else %} false {% endif %}
+    salon_state:
+      value_template: >-
+        {% if is_state("light.yeelight_livingroom", "on") or is_state("light.yeelight_livingroom2", "on") -%}
+          {% set l = True %}
+        {%- endif %}
+        {% if is_state("cover.roleta_balkon_1", "closed") or is_state("cover.roleta_balkon_2", "closed") -%}
+          {% set c = True %}
+        {%- endif %}
+        {% if l and c -%}
+          allon
+        {% elif l and not c-%}
+          lightson
+        {% elif not l and c-%}
+          coversclosed
+        {% else-%}
+          alloff
+        {%- endif %}
+    maly_pokoj_state:
+      friendly_name: 'Sensor maly pokoj'
+      value_template: >-
+        {% if is_state("light.yeelight_biurko", "on") and is_state("cover.maly_pokoj", "open") -%}
+          on_open
+        {%- elif is_state("light.yeelight_biurko", "on") and is_state("cover.maly_pokoj", "closed") -%}
+          on_closed
+        {%- elif is_state("light.yeelight_biurko", "off") and is_state("cover.maly_pokoj", "open") -%}
+          off_open
+        {%- elif is_state("light.yeelight_biurko", "off") and is_state("cover.maly_pokoj", "closed") -%}
+          off_closed
+        {%- endif %}
+    radio_onkyo_preset:
+      friendly_name: "Radio onkyo preset"
+      value_template: >-
+        {% set x = state_attr('media_player.onkyo', 'preset') %}
+        {{ x }}
+
+- platform: mqtt
+  name: "Temperature"
+  state_topic: "tele/temperature/SENSOR"
+  unit_of_measurement: '°C'
+  value_template: '{{ value_json["BME280"]["Temperature"] }}'
+
+- platform: mqtt
+  name: "Humidity"
+  state_topic: "tele/temperature/SENSOR"
+  unit_of_measurement: '%'
+  value_template: '{{ value_json["BME280"]["Humidity"] }}'
+
+- platform: mqtt
+  name: "Pressure"
+  state_topic: "tele/temperature/SENSOR"
+  unit_of_measurement: 'hPa'
+  value_template: '{{ value_json["BME280"]["Pressure"] }}'
+
+- platform: mqtt
+  name: "Temperature Outside"
+  state_topic: "tele/roleta_okno1/SENSOR"
+  unit_of_measurement: '°C'
+  value_template: '{{ value_json["DS18B20"]["Temperature"] }}'
+
+- platform: history_stats
+  name: Lampa korytarz
+  entity_id: light.korytarz
+  state: 'on'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().day * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: Lampa sypialnia listwa
+  entity_id: light.yeelight_sypialnia
+  state: 'on'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().day * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: Lampa sypialnia nocna
+  entity_id: light.bedside
+  state: 'on'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().day * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: Lampa salon lewa
+  entity_id: light.yeelight_livingroom
+  state: 'on'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().day * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: Lampa salon prawa
+  entity_id: light.yeelight_livingroom2
+  state: 'on'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().day * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: Lampa kuchnia stol lewa
+  entity_id: light.kuchnia_stol_lewa
+  state: 'on'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().day * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: Lampa kuchnia stol prawa
+  entity_id: light.kuchnia_stol_prawa
+  state: 'on'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().day * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: lampa kuchnia dol
+  entity_id: light.kuchnia_dol
+  state: 'on'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().day * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: Lampa kuchnia gora
+  entity_id: light.kuchnia_gora
+  state: 'on'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().day * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: Lampa lazienka lustro
+  entity_id: light.lazienka_lustro
+  state: 'on'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().day * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: Lampa lazienka gora
+  entity_id: light.lazienka_gora
+  state: 'on'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().day * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: Lampa Maly pokoj
+  entity_id: light.yeelight_biurko
+  state: 'on'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().day * 86400 }}'
+  end: '{{ now() }}'

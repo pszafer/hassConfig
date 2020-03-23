@@ -1,0 +1,57 @@
+vacuum_state:
+  name: "Vacuum state"
+  options:
+    - hallway
+    - hallway_paused
+    - bedroom
+    - bedroom_paused
+    - smallroom
+    - smallroom_paused
+    - mainroom
+    - mainroom_paused
+    - bathroom
+    - bathroom_paused
+    - kitchen
+    - kitchen_paused
+    - docked
+  initial: docked
+
+vacuum_target:
+  name: "Vacuum target"
+  options:
+    - hallway
+    - bedroom
+    - smallroom
+    - mainroom
+    - bathroom
+    - kitchen
+    - paused
+    - docked
+  initial: docked
+
+vacuum_new_state:
+  name: "Vacuum new state"
+  options:
+    - hallway
+    - hallway2x
+    - bedroom
+    - bedroom2x
+    - smallroom
+    - smallroom2x
+    - mainroom
+    - mainroom2x
+    - bathroom
+    - bathroom2x
+    - kitchen
+    - kitchen2x
+    - docked
+  initial: docked
+
+radio_state:
+  name: "Radio state"
+  options:
+    - Antyradio
+    - Dwojka
+    - Trojka
+    - Rockradio
+    - Tok FM

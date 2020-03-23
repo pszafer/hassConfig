@@ -1,0 +1,7 @@
+
+- cal_id: !secret google_cal_id
+  entities:
+  - device_id: pati_angielski
+    ignore_availability: true
+    name: Pati_angielski
+    track: true

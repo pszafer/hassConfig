@@ -1,0 +1,51 @@
+- id: '1520152010345'
+  alias: Wlacz lampe gdy NC+
+  trigger:
+  - entity_id: sensor.living_room_onkyo_source
+    platform: state
+    to: NC+
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+  - data:
+      brightness: 127
+      entity_id: light.yeelight_livingroom
+      rgb_color:
+      - 20
+      - 20
+      - 50
+    service: light.turn_on
+  - data:
+      brightness: 127
+      entity_id: light.yeelight_livingroom2
+      rgb_color:
+      - 20
+      - 20
+      - 50
+    service: light.turn_on
+- action:
+  - data:
+      message: Peugeot jedzie bez pati
+      title: Peugeot
+    service: notify.google_notify
+  alias: Peugeot bez Pati
+  condition: []
+  id: '1521048031027'
+  trigger:
+  - entity_id: sensor.peugeot_place
+    platform: state
+    to: Peugeot bez Pati
+- id: '1544966093896'
+  alias: Test christmas
+  trigger:
+  - entity_id: input_boolean.house_guests
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - alias: ''
+    data:
+      entity_id: light.yeelight_sypialnia
+    service: light.turn_on

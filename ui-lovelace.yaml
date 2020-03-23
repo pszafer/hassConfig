@@ -1,0 +1,913 @@
+swipe_nav:
+  animate: swipe
+  prevent_default: true
+  swipe_amount: 30
+  wrap: false
+title: Barwicka
+views:
+  - theme: default
+    icon: mdi:earth
+    badges:
+      - entity: person.pati
+      - entity: person.pawel
+      - entity: binary_sensor.pawel_charging
+      - entity: binary_sensor.pati_charging
+      - entity: sun.sun
+    cards:
+      - cards:
+          - elements:
+              - entity: light.yeelight_livingroom
+                icon: 'mdi:track-light'
+                style:
+                  '--iron-icon-height': 2em
+                  '--iron-icon-width': 2.2em
+                  background: var(--yeelight_livingroom-color)
+                  border: medium solid
+                  border-radius: 50%
+                  color: 'rgba(251, 244, 25, 1)'
+                  left: 15%
+                  padding: 2px
+                  top: 10%
+                  transform: none
+                tap_action:
+                  action: toggle
+                type: state-icon
+              - entity: light.yeelight_livingroom2
+                icon: 'mdi:track-light'
+                style:
+                  '--iron-icon-height': 2em
+                  '--iron-icon-width': 2.2em
+                  background: var(--yeelight_livingroom2-color)
+                  border: medium solid
+                  border-radius: 50%
+                  color: 'rgba(251, 244, 25, 1)'
+                  padding: 2px
+                  right: 25%
+                  top: 10%
+                  transform: none
+                tap_action:
+                  action: toggle
+                type: state-icon
+              - entity: media_player.radio
+                icon: 'mdi:music'
+                style:
+                  '--iron-icon-height': 2em
+                  '--iron-icon-width': 2.2em
+                  background: var(--my-radio-color)
+                  border: medium solid
+                  border-radius: 50%
+                  bottom: 10%
+                  color: 'rgba(251, 244, 25, 1)'
+                  padding: 2px
+                  right: 25%
+                  transform: none
+                tap_action:
+                  action: toggle
+                type: state-icon
+              - entity: media_player.epson
+                icon: 'mdi:projector'
+                style:
+                  '--iron-icon-height': 2em
+                  '--iron-icon-width': 2.2em
+                  background: var(--projector-color)
+                  border: medium solid
+                  border-radius: 50%
+                  bottom: 10%
+                  color: 'rgba(251, 244, 25, 1)'
+                  padding: 2px
+                  right: 10%
+                  transform: none
+                tap_action:
+                  action: toggle
+                type: state-icon
+              - entity: switch.vacuum_mainroom
+                icon: 'mdi:broom'
+                style:
+                  '--iron-icon-height': 2em
+                  '--iron-icon-width': 2.2em
+                  background: var(--vacuum-mainroom-color)
+                  border: medium solid
+                  border-radius: 50%
+                  bottom: 10%
+                  color: 'rgba(251, 244, 25, 1)'
+                  left: 10%
+                  padding: 2px
+                  transform: none
+                tap_action:
+                  action: toggle
+                type: state-icon
+            image: >-
+              https://previews.123rf.com/images/jemastock/jemastock1903/jemastock190300309/124814645-home-living-room-interior-wit-sofa-tv-and-dog-cartoon-vector-illustration-graphic-design-vector-illu.jpg
+            style: |
+              ha-card {
+                --green: rgba(72, 187, 120, 0.8);
+                --red: rgba(240, 59, 53, 0.8);
+                --yellow: rgba(240, 203, 53, 0.8);
+                --green-yeelight: rgba(185, 240, 53, 0.9);
+                --gray: rgba(0,0,0,0.7);
+                --green-light: rgba(217, 250, 226, 1.0);
+                --my-radio-color: {% if is_state('media_player.radio', 'on') %} var(--green) {% else %} var(--red) {% endif %};
+                --projector-color: {% if is_state('media_player.epson', 'on') %} var(--green) {% else %} var(--red) {% endif %};
+                --vacuum-mainroom-color: {% if is_state('switch.vacuum_mainroom', 'on') %} var(--green) {% else %} var(--red) {% endif %};
+                --yeelight_livingroom2-color: {% if is_state('light.yeelight_livingroom2', 'on') %} var(--green-yeelight) {% else %} var(--gray) {% endif %};
+                --yeelight_livingroom-color: {% if is_state('light.yeelight_livingroom', 'on') %} var(--green-yeelight) {% else %} var(--gray) {% endif %};
+                --kuchniastollewa-color: {% if is_state('light.kuchnia_stol_lewa', 'on') %} var(--yellow) {% else %} var(--gray) {% endif %};
+                --kuchniastolprawa-color: {% if is_state('light.kuchnia_stol_prawa', 'on') %} var(--yellow) {% else %} var(--gray) {% endif %};
+              }
+            type: picture-elements
+        type: 'custom:vertical-stack-in-card'
+      - elements:
+          - entity: light.kuchnia_stol_lewa
+            icon: 'mdi:ceiling-light'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--kuchniastollewa-color)
+              border: medium solid
+              border-radius: 50%
+              color: 'rgba(251, 244, 25, 1)'
+              left: 7%
+              padding: 2px
+              top: 10%
+              transform: none
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.kuchnia_stol_prawa
+            icon: 'mdi:ceiling-light'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--kuchniastolprawa-color)
+              border: medium solid
+              border-radius: 50%
+              color: 'rgba(251, 244, 25, 1)'
+              left: 18%
+              padding: 2px
+              top: 10%
+              transform: none
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.kuchnia_gora
+            icon: 'mdi:track-light'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--kuchniagora-color)
+              border: medium solid
+              border-radius: 50%
+              color: 'rgba(251, 244, 25, 1)'
+              padding: 2px
+              right: 5%
+              top: 5%
+              transform: none
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.kuchnia_dol
+            icon: 'mdi:track-light'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--kuchniadol-color)
+              border: medium solid
+              border-radius: 50%
+              color: 'rgba(251, 244, 25, 1)'
+              padding: 2px
+              right: 5%
+              top: 35%
+              transform: none
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: switch.vacuum_kitchen
+            icon: 'mdi:broom'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--vacuum-kitchen-color)
+              border: medium solid
+              border-radius: 50%
+              bottom: 10%
+              color: 'rgba(251, 244, 25, 1)'
+              left: 50%
+              padding: 2px
+              transform: none
+            tap_action:
+              action: toggle
+            type: state-icon
+        image: >-
+          https://image.shutterstock.com/image-illustration/kitchen-interior-cartoon-illustration-table-260nw-787934161.jpg
+        type: picture-elements
+        style: |
+          ha-card {
+            --green: rgba(72, 187, 120, 0.8);
+            --red: rgba(240, 59, 53, 0.8);
+            --yellow: rgba(240, 203, 53, 0.8);
+            --gray: rgba(0,0,0,0.7);
+            --green-light: rgba(217, 250, 226, 1.0);
+            --vacuum-kitchen-color: {% if is_state('switch.vacuum_kitchen', 'on') %} var(--green) {% else %} var(--red) {% endif %};
+            --kuchniadol-color: {% if is_state('light.kuchnia_dol', 'on') %} var(--yellow) {% else %} var(--gray) {% endif %};
+            --kuchniagora-color: {% if is_state('light.kuchnia_gora', 'on') %} var(--yellow) {% else %} var(--gray) {% endif %};
+            --kuchniastollewa-color: {% if is_state('light.kuchnia_stol_lewa', 'on') %} var(--yellow) {% else %} var(--gray) {% endif %};
+            --kuchniastolprawa-color: {% if is_state('light.kuchnia_stol_prawa', 'on') %} var(--yellow) {% else %} var(--gray) {% endif %};
+          }
+      - elements:
+          - entity: cover.sypialnia
+            icon: 'mdi:window-closed'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--cover-color)
+              border: medium solid
+              border-radius: 50%
+              color: 'rgba(251, 244, 25, 1)'
+              left: 40%
+              padding: 2px
+              top: 10%
+              transform: none
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.sypialnia_gora
+            icon: 'mdi:ceiling-light'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--light-sypialniagora-color)
+              border: medium solid
+              border-radius: 50%
+              color: 'rgba(251, 244, 25, 1)'
+              left: 60%
+              padding: 2px
+              top: 6%
+              transform: none
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.yeelight_sypialnia
+            icon: 'mdi:track-light'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--light-yeelightsypialnia-color)
+              border: medium solid
+              border-radius: 50%
+              bottom: 30%
+              color: 'rgba(251, 244, 25, 1)'
+              left: 40%
+              padding: 2px
+              transform: none
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: switch.vacuum_bedroom
+            icon: 'mdi:broom'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--vacuum_bedroom-color)
+              border: medium solid
+              border-radius: 50%
+              bottom: 10%
+              color: 'rgba(251, 244, 25, 1)'
+              left: 50%
+              padding: 2px
+              transform: none
+            tap_action:
+              action: toggle
+            type: state-icon
+        image: /local/bedroom.jpg
+        type: picture-elements
+        style: |
+          ha-card {
+            --green: rgba(72, 187, 120, 0.8);
+            --red: rgba(240, 59, 53, 0.8);
+            --yellow: rgba(240, 203, 53, 0.8);
+            --gray: rgba(0,0,0,0.7);
+            --green-light: rgba(217, 250, 226, 1.0);
+            --vacuum_bedroom-color: {% if is_state('switch.vacuum_bedroom', 'on') %} var(--green) {% else %} var(--red) {% endif %};
+            --light-yeelightsypialnia-color: {% if is_state('light.yeelight_sypialnia', 'on') %} var(--yellow) {% else %} var(--gray) {% endif %};
+            --light-sypialniagora-color: {% if is_state('light.sypialnia_gora', 'on') %} var(--yellow) {% else %} var(--gray) {% endif %};
+            --light-right-color: {% if is_state('light.maly_pokoj_prawy', 'on') %} var(--yellow) {% else %} var(--gray) {% endif %};
+            --cover-color: {% if is_state('cover.sypialnia', 'open') %} var(--green) {% else %} var(--red) {% endif %};
+          }
+      - elements:
+          - entity: light.maly_pokoj_lewy
+            icon: 'mdi:ceiling-light'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--light-left-color)
+              border: medium solid
+              border-radius: 50%
+              color: 'rgba(251, 244, 25, 1)'
+              left: 40%
+              padding: 2px
+              top: 5%
+              transform: none
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.maly_pokoj_prawy
+            icon: 'mdi:ceiling-light'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--light-right-color)
+              border: medium solid
+              border-radius: 50%
+              color: 'rgba(251, 244, 25, 1)'
+              left: 52%
+              padding: 2px
+              top: 5%
+              transform: none
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: device_tracker.xps_2
+            icon: 'mdi:laptop'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--xps-color)
+              border: medium solid
+              border-radius: 50%
+              color: 'rgba(251, 244, 25, 1)'
+              left: 60%
+              padding: 2px
+              top: 40%
+              transform: none
+            type: state-icon
+          - entity: device_tracker.tbh107_2
+            icon: 'mdi:laptop'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--tbh107-color)
+              border: medium solid
+              border-radius: 50%
+              color: 'rgba(251, 244, 25, 1)'
+              left: 20%
+              padding: 2px
+              top: 40%
+              transform: none
+            type: state-icon
+          - entity: light.yeelight_biurko
+            icon: 'mdi:desk-lamp'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--light-biurko-color)
+              border: medium solid
+              border-radius: 50%
+              color: 'rgba(251, 244, 25, 1)'
+              padding: 2px
+              right: 15%
+              top: 40%
+              transform: none
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: switch.vacuum_smallroom
+            icon: 'mdi:broom'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: 'rgba(0,0,0,0.7)'
+              border: medium solid
+              border-radius: 50%
+              bottom: 10%
+              color: 'rgba(251, 244, 25, 1)'
+              left: 20%
+              padding: 2px
+              transform: none
+            tap_action:
+              action: toggle
+            type: state-icon
+        image: >-
+          https://thumbs.dreamstime.com/z/workplace-two-office-workers-vector-flat-illustration-picture-tables-chairs-computer-folders-other-73819438.jpg
+        style: |
+          ha-card {
+            --green: rgba(72, 187, 120, 0.8);
+            --red: rgba(240, 59, 53, 0.8);
+            --yellow: rgba(240, 203, 53, 0.8);
+            --gray: rgba(0,0,0,0.7);
+            --green-light: rgba(217, 250, 226, 1.0);
+            --tbh107-color: {% if is_state('device_tracker.tbh107_2', 'home') %} var(--green) {% else %} var(--red) {% endif %};
+            --light-left-color: {% if is_state('light.maly_pokoj_lewy', 'on') %} var(--yellow) {% else %} var(--gray) {% endif %};
+            --light-biurko-color: {% if is_state('light.yeelight_biurko', 'on') %} var(--green) {% else %} var(--gray) {% endif %};
+            --light-right-color: {% if is_state('light.maly_pokoj_prawy', 'on') %} var(--yellow) {% else %} var(--gray) {% endif %};
+            --xps-color: {% if is_state('device_tracker.xps_2', 'home') %} var(--green) {% else %} var(--red) {% endif %};
+          }
+        type: picture-elements
+      - elements:
+          - entity: light.korytarz
+            icon: 'mdi:ceiling-light'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--korytarz-color)
+              border: medium solid
+              border-radius: 50%
+              color: 'rgba(251, 244, 25, 1)'
+              left: 40%
+              padding: 2px
+              top: 5%
+              transform: none
+            type: state-icon
+          - entity: light.quinled_korytarz
+            icon: 'mdi:track-light'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--quinled-korytarz-color)
+              border: medium solid
+              border-radius: 50%
+              color: 'rgba(251, 244, 25, 1)'
+              left: 15%
+              padding: 2px
+              top: 20%
+              transform: none
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: switch.vacuum_hallway
+            icon: 'mdi:broom'
+            style:
+              '--iron-icon-height': 2em
+              '--iron-icon-width': 2.2em
+              background: var(--vacuum-hallway-color)
+              border: medium solid
+              border-radius: 50%
+              bottom: 15%
+              color: 'rgba(251, 244, 25, 1)'
+              left: 40%
+              padding: 2px
+              transform: none
+            tap_action:
+              action: toggle
+            type: state-icon
+        image: >-
+          https://i.pinimg.com/736x/b7/f7/dd/b7f7ddf3a87fddd252aaf4b6b744ee18.jpg
+        type: picture-elements
+        style: |
+          ha-card {
+            --green: rgba(72, 187, 120, 0.8);
+            --red: rgba(240, 59, 53, 0.8);
+            --yellow: rgba(240, 203, 53, 0.8);
+            --gray: rgba(0,0,0,0.7);
+            --green-light: rgba(217, 250, 226, 1.0);
+            --vacuum-hallway-color: {% if is_state('switch.vacuum_hallway', 'on') %} var(--green) {% else %} var(--red) {% endif %};
+            --quinled-korytarz-color: {% if is_state('light.quinled_korytarz', 'on') %} var(--yellow) {% else %} var(--gray) {% endif %};
+            --korytarz-color: {% if is_state('light.korytarz', 'on') %} var(--yellow) {% else %} var(--gray) {% endif %};
+          }
+      - type: custom:mini-graph-card
+        entities:
+          - entity: binary_sensor.pir_sensor
+            name: Korytarz
+        name: Motion last hour
+        hours_to_show: 1
+        points_per_hour: 60
+        update_interval: 30
+        aggregate_func: max
+        line_width: 2
+        smoothing: false
+        state_map:
+          - value: "off"
+            label: Brak
+          - value: "on"
+            label: Ruch
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.temperature_outside
+            name: Dwór
+          - entity: sensor.maly_pokoj_temp
+            name: Mały pokój
+          - entity: sensor.pms_temp
+            name: Korytarz
+          - color: gray
+            entity: input_number.night_day
+            name: Night
+            show_line: false
+            show_points: false
+            show_legend: false
+            y_axis: secondary
+        icon: mdi:thermometer
+        font_size: 75
+        name: Temperatura
+        hours_to_show: 48
+        show:
+          labels: true
+          labels_secondary: true
+        group_by: date
+      - type: horizontal-stack
+        cards:
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.pm2_5
+            - sensor.pm10
+          line_color: blue
+          line_width: 8
+          font_size: 75
+        - type: custom:mini-graph-card
+          entities:
+            - entity: sensor.maly_pokoj_wilgotnosc
+              name: Maly pokoj
+            - entity: sensor.pms_hum
+              name: Korytarz
+          line_color: '#e74c3c'
+          line_width: 8
+          name: Wilgotność
+          font_size: 75
+      - entity: weather.dark_sky
+        type: custom:weather-card
+  - badges: []
+    cards:
+      - cards:
+          - cards:
+              - entity: light.cala_tasma
+                name: Balkon
+                type: light
+              - entity: light.choinka_light
+                name: Choinka
+                type: light
+            type: horizontal-stack
+          - cards:
+              - entity: light.led0_50_3
+                name: LED0-50
+                type: entity-button
+              - entity: light.led_projektor_3
+                name: LED PROJ
+                type: entity-button
+            type: horizontal-stack
+          - cards:
+              - entity: light.yeelight_livingroom
+                name: Sofa lewa
+                type: light
+              - entity: light.yeelight_livingroom2
+                name: Sofa prawa
+                type: light
+            type: horizontal-stack
+        type: vertical-stack
+      - cards:
+          - cards:
+              - entity: light.kuchnia_dol
+                icon: 'mdi:arrow-down-bold'
+                name: Kuchnia Dol
+                tap_action:
+                  action: toggle
+                type: entity-button
+              - entity: light.kuchnia_gora
+                icon: 'mdi:arrow-up-bold'
+                name: Kuchnia Gora
+                tap_action:
+                  action: toggle
+                type: entity-button
+            type: horizontal-stack
+          - cards:
+              - entity: light.kuchnia_stol_lewa
+                icon: 'mdi:arrow-left-bold'
+                name: Stol lewy
+                tap_action:
+                  action: toggle
+                type: entity-button
+              - entity: light.kuchnia_stol_prawa
+                icon: 'mdi:arrow-right-bold'
+                name: Stol prawy
+                tap_action:
+                  action: toggle
+                type: entity-button
+            type: horizontal-stack
+        type: vertical-stack
+      - cards:
+          - cards:
+              - entity: light.yeelight_sypialnia
+                name: Sypialnia
+                type: light
+            type: horizontal-stack
+          - card:
+              entity: script.zachod_bedroom
+              icon: 'mdi:sun'
+              name: Zachod sypialnia
+              type: entity-button
+            conditions:
+              - entity: input_boolean.pati_phone_charging
+                state: 'on'
+            type: conditional
+          - entity: light.sypialnia_gora
+            icon: 'mdi:ceiling-light'
+            tap_action:
+              action: toggle
+            type: entity-button
+        type: vertical-stack
+      - cards:
+          - cards:
+              - entity: light.maly_pokoj_lewy
+                icon: 'mdi:chevron-double-left'
+                tap_action:
+                  action: toggle
+                type: entity-button
+              - entity: light.maly_pokoj_prawy
+                icon: 'mdi:chevron-double-right'
+                tap_action:
+                  action: toggle
+                type: entity-button
+            type: horizontal-stack
+          - entity: light.yeelight_biurko
+            type: light
+        type: vertical-stack
+      - cards:
+          - entity: light.lazienka_gora
+            icon: 'mdi:toilet'
+            tap_action:
+              action: toggle
+            type: entity-button
+          - entity: light.lazienka_lustro
+            icon: 'mdi:shower-head'
+            tap_action:
+              action: toggle
+            type: entity-button
+        type: horizontal-stack
+      - entity: light.korytarz
+        icon: 'mdi:exit-to-app'
+        tap_action:
+          action: toggle
+        type: entity-button
+      - card:
+          entities:
+            - script.hallway_light_turnoff
+          type: entities
+        conditions:
+          - entity: light.korytarz
+            state: 'on'
+        type: conditional
+      - card:
+          entities:
+            - entity: script.zachod_bedroom
+          title: Zachod
+          type: entities
+        conditions:
+          - entity: input_boolean.pati_phone_charging
+            state: 'on'
+          - entity: input_boolean.pawwel_phone_charging
+            state: 'on'
+        type: conditional
+      - entity: light.quinled_korytarz
+        type: light
+    icon: 'mdi:track-light'
+    path: ''
+    title: Lights
+  - badges: []
+    cards:
+      - entities:
+          - entity: cover.sypialnia_door
+        type: entities
+      - aspect_ratio: 85%
+        entity: camera.salon
+        type: picture-entity
+      - aspect_ratio: 65%
+        camera_view: live
+        entity: camera.ip_webcam
+        type: picture-entity
+      - aspect_ratio: 65%
+        entity: camera.ip_webcam_2
+        type: picture-entity
+    icon: 'mdi:cctv'
+    path: camera
+    title: Kamery
+  - badges:
+      - input_select.vacuum_state
+      - input_select.vacuum_new_state
+      - sensor.odkurzanie_pomieszczen
+    cards:
+      - cards:
+          - entity: switch.vacuum_bedroom
+            hold_action:
+              action: call-service
+              service: input_select.select_option
+              service_data:
+                entity_id: input_select.vacuum_new_state
+                option: bedroom2x
+            icon: 'mdi:bed-empty'
+            tap_action:
+              action: toggle
+            type: entity-button
+          - entity: switch.vacuum_smallroom
+            icon: 'mdi:desk-lamp'
+            tap_action:
+              action: toggle
+            type: entity-button
+        type: horizontal-stack
+      - cards:
+          - entity: switch.vacuum_mainroom
+            icon: 'mdi:sofa'
+            state_color: true
+            tap_action:
+              action: toggle
+            type: entity-button
+          - entity: switch.vacuum_kitchen
+            icon: 'mdi:pot-mix'
+            tap_action:
+              action: toggle
+            type: entity-button
+        type: horizontal-stack
+      - cards:
+          - entity: switch.vacuum_hallway
+            icon: 'mdi:exit-to-app'
+            tap_action:
+              action: toggle
+            type: entity-button
+          - entity: switch.vacuum_bathroom
+            hold_action:
+              action: call-service
+              service: input_select.select_option
+              service_data:
+                entity_id: input_select.vacuum_new_state
+                option: kitchen2x
+            icon: 'mdi:shower'
+            tap_action:
+              action: toggle
+            type: entity-button
+        type: horizontal-stack
+      - entities:
+          - entity: vacuum.rockrobo
+        type: entities
+      - camera_image: camera.rockrobo_map
+        entity: vacuum.xiaomi_vacuum_cleaner
+        type: picture-entity
+      - entities:
+          - entity: input_select.vacuum_target
+        type: entities
+      - crop:
+          bottom: 0
+          left: 0
+          right: 0
+          top: 0
+        entity: sensor.valetudo_map
+        floor_color: '#0076ffa1'
+        min_height: 0
+        path_color: black
+        rotate: 0
+        type: 'custom:valetudo-map-card'
+        vacuum_color: white
+    icon: 'mdi:robot-vacuum'
+    theme: teal
+    title: Vacuum
+  - badges:
+      - cover.balcony_windows
+    cards:
+      - cards:
+          - entities:
+              - entity: cover.covers
+                name: Wszystkie
+            show_header_toggle: false
+            title: Wszystkie
+            type: entities
+          - entities:
+              - entity: cover.balcony_windows
+                name: Balkonowe
+              - entity: cover.okno_salon
+                name: Okno
+              - entity: cover.roleta_balkon_1
+                name: Balkon prawy
+              - entity: cover.roleta_balkon_2
+                name: Balkon lewy
+            show_header_toggle: false
+            title: Glowny pokoj
+            type: entities
+          - entities:
+              - entity: cover.maly_pokoj
+                name: Mały pokoj
+              - entity: cover.sypialnia
+                name: Sypialnia
+            show_header_toggle: false
+            title: Pozostale
+            type: entities
+        type: vertical-stack
+    icon: 'mdi:window-open'
+    title: Covers
+  - badges: []
+    cards:
+      - type: shopping-list
+    icon: 'mdi:basket'
+    panel: true
+    title: Shopping list
+  - badges:
+      - sensor.weather_temperature
+      - sensor.temperature_outside
+      - sensor.temperatura_bme280_temperature
+      - sensor.temperatura_bme280_pressure
+    cards:
+      - entities:
+          - entity: sensor.tempoffice_bme680_gas
+          - entity: sensor.tempoffice_bme680_humidity
+          - entity: sensor.tempoffice_bme680_humidity
+          - entity: sensor.tempoffice_bme680_temperature
+        show_header_toggle: false
+        type: entities
+      - aspect_ratio: 50%
+        type: iframe
+        url: >-
+          https://embed.windy.com/embed2.html?lat=52.368&lon=16.817&zoom=5&level=surface&overlay=rainAccu&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=52.368&detailLon=16.817&metricWind=default&metricTemp=default&radarRange=-1
+    icon: 'mdi:white-balance-sunny'
+    panel: false
+    title: Weather message
+  - badges:
+      - media_player.onkyo
+      - media_player.epson
+    cards:
+      - entities:
+          - entity: switch.radio
+          - entity: input_boolean.movie_time
+          - name: Moj cast
+            type: cast
+            view: 6
+        type: entities
+      - entity: media_player.epson
+        type: media-control
+      - entity: media_player.onkyo
+        type: media-control
+      - entity: media_player.shield_2
+        type: media-control
+      - entity: media_player.onkyo_tx_nr474_e7af4f
+        type: media-control
+      - entity: media_player.radio
+        type: media-control
+    icon: 'mdi:animation-play'
+    title: Media players
+  - badges: []
+    cards:
+      - entity: plant.pomidor1
+        type: plant-status
+      - elements:
+          - entity: sensor.wilgoc
+            style:
+              '--ha-label-badge-font-size': 1em
+              left: 2%
+              top: 7%
+              transform: none
+            type: state-badge
+          - entity: sensor.temperature_outside
+            style:
+              '--ha-label-badge-font-size': 1em
+              left: 17%
+              top: 7%
+              transform: none
+            type: state-badge
+          - entity: plant.pomidor1
+            style:
+              '--ha-label-badge-font-size': 1em
+              left: 80%
+              top: 7%
+              transform: none
+            type: state-badge
+        image: /local/tomato.jpg
+        type: picture-elements
+      - entities:
+          - entity: switch.podlewanie_2
+            name: Podlewaj pomidory
+          - entity: switch.podlewanie_pom
+            name: Podlewanie zewnatrz
+        type: entities
+    icon: 'mdi:flower'
+    path: plants
+    title: Rosliny
+  - badges: []
+    cards:
+      - entities:
+          - entity: script.zachod
+          - entity: script.zachod_bedroom
+        type: entities
+      - entities:
+          - entity: input_boolean.christmas_lights
+          - entity: input_boolean.pati_phone_charging
+          - entity: input_boolean.pawel_phone_charging
+          - entity: input_boolean.letsleep
+          - entity: input_boolean.home_occupied
+          - entity: input_boolean.house_guests
+          - entity: input_boolean.turn_on_sunset
+          - entity: input_boolean.open_close_cover_automatically
+        title: Input booleans
+        type: entities
+    icon: 'mdi:file-tree'
+    title: Scripts
+  - badges:
+      - entity: person.pati
+      - entity: proximity.pati_to_home
+    cards:
+      - default_zoom: 13
+        entities:
+          - entity: person.pati
+          - entity: zone.home
+          - entity: zone.lidl_skorzewo
+          - entity: zone.patiszkola
+          - entity: zone.tance
+        geo_location_sources:
+          - device_tracker.pati_s7
+        title: Pati place
+        type: map
+    panel: false
+    path: patimap
+    title: PatiMap

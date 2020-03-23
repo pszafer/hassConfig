@@ -1,0 +1,7 @@
+
+- platform: nmap_tracker
+  hosts: 192.168.4.99-100
+  scan_options: "-F –host-timeout 2s"
+
+  #- platform: bluetooth_tracker
+

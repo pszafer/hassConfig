@@ -1,0 +1,35 @@
+- platform: onkyo
+  host: 192.168.4.103
+  name: onkyo
+  sources:
+    dvd : 'Kodi'
+    video2: 'NC+'
+    fm: 'Radio'
+
+- platform: epson
+  host: EBCED4E2
+  name: epson
+
+
+- platform: universal
+  name: radio
+  children:
+    - media_player.onkyo
+  commands:
+    turn_on:
+      service: switch.turn_on
+      data:
+        entity_id: switch.radio
+    turn_off:
+      service: switch.turn_off
+      data:
+        entity_id: switch.radio
+    select_source:
+      service: input_select.select_option
+      data_template:
+        entity_id: input_select.radio_state
+        option: '{{ source }}'
+  attributes:
+    state: switch.radio
+    source: input_select.radio_state
+    source_list: input_select.radio_state|options

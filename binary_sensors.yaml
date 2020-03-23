@@ -1,0 +1,14 @@
+- platform: template
+  sensors:
+    pati_charging:
+      friendly_name: "Pati CHARGER"
+      value_template: >-
+        {{ state_attr('sensor.pati_battery_level', 'is_charging') }}
+    pawel_charging:
+      friendly_name: "Pawe CHARGER"
+      value_template: >-
+        {{ state_attr('sensor.pawel_battery_level', 'is_charging') }}
+    phones_charging:
+      friendly_name: "Phones CHARGER"
+      value_template: >-
+        {{ state_attr('sensor.pawel_battery_level', 'is_charging') and state_attr('sensor.pati_battery_level', 'is_charging') }}

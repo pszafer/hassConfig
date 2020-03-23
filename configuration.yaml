@@ -1,0 +1,152 @@
+homeassistant:
+  name: Barwicka
+  latitude: 52.4103
+  longitude: 16.8316
+  elevation: 131
+  unit_system: metric
+  time_zone: Europe/Warsaw
+  whitelist_external_dirs:
+    - /root/.homeassistant/
+  customize: !include customize.yaml
+
+mqtt:
+  client_id: hass
+  broker: hass.velomelon.com
+  port: 8883
+  discovery: true
+  certificate: 'auto'
+  username: mqtt
+  password: !secret mqtt
+zeroconf:
+mqtt_eventstream:
+  subscribe_topic: hass11
+
+  #shopping_list:
+
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+frontend: !include frontend.yaml
+
+lovelace:
+  mode: yaml
+  resources:
+  - type: js
+    url: /local/valetudo-map-card.js
+  - type: js
+    url: /local/lovelace-swipe-navigation/swipe-navigation.js?v=1.0.0
+  - type: module
+    url: /community_plugin/button-card/button-card.js
+  - type: module
+    url: /community_plugin/mini-media-player/mini-media-player-bundle.js
+  - type: module
+    url: /community_plugin/lovelace-card-mod/card-mod.js
+  - type: module
+    url: /community_plugin/banner-card/banner-card.js?v=1
+  - type: js
+    url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
+  - url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
+    type: module
+  - url: /community_plugin/weather-card/weather-card.js
+    type: module
+config:
+
+http:
+  server_port: 443
+  ssl_certificate: /root/acme/barwicka_cert.fullchain
+  ssl_key: /root/acme/barwicka_cert.key
+  base_url: https://hass.velomelon.com
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 192.168.4.99
+      #  cors_allowed_origins:
+      #     - https://cast.home-assistant.io
+
+recorder: !include recorder.yaml
+
+updater:
+discovery: !include discovery.yaml
+
+conversation:
+
+dialogflow: 
+
+intent_script: !include intent_scripts.yaml
+
+history:
+
+logbook:
+
+map:
+
+sun:
+
+sensor: !include sensors.yaml
+
+# Text to speech
+tts:
+  - platform: google_translate
+    service_name: google_say
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram
+    allowed_chat_ids:
+      - !secret telegram_chat_id_1
+      - !secret telegram_chat_id_2
+light: !include lights.yaml
+yeelight: !include yeelight.yaml
+
+media_player: !include media_players.yaml
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+device_tracker: !include device_tracker.yaml
+
+
+binary_sensor: !include binary_sensors.yaml
+
+input_boolean: !include input_boolean.yaml
+input_select: !include input_select.yaml
+input_number:
+  night_day:
+    name: Is Night
+    initial: 1
+    min: 0
+    max: 1
+    step: 1
+
+camera: !include cameras.yaml
+
+scene: !include scenes.yaml
+system_health:
+switch: !include switches.yaml
+cover: !include covers.yaml
+
+notify: !include notify.yaml
+person:
+mobile_app:
+#fan: !include fan.yaml
+
+
+logger:
+  default: warning
+  logs:
+    homeassistant.components.google_assistant: debug
+    homeassistant.components.http.ban: debug
+    py.warnings: critical
+    pydroid_ipcam: critical
+    requests.packages.urllib3.connectionpool: critical
+    #    homeassistant.components.mqtt: debug
+          #    homeassistant.components: info
+  
+weather: !include weather.yaml
+proximity: !include proximity.yaml
+plant:
+  pomidor1:
+    sensors:
+      moisture: sensor.wilgoc
+      temperature: sensor.temperature_outside
+    min_moisture: 20
+
+
+android_ip_webcam: !include android_cameras.yaml

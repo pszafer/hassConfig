@@ -1,0 +1,51 @@
+purge_keep_days: 50
+db_url: mysql+pymysql://hass:k1pqrSRQRyECFLpw@mysql.velomelon.com/homeassistant?charset=utf8
+#db_url: sqlite:////root/.homeassistant/home-assistant_v2.db
+include:
+  entities:
+    - binary_sensor.pir
+    - cover.living_room_windows
+    - cover.maly_pokoj
+    - cover.okno_salon
+    - cover.roleta_balkon_1
+    - cover.roleta_balkon_2
+    - cover.sypialnia
+    - input_boolean.home_occupied
+    - input_select.vacuum_state
+    - light.korytarz
+    - light.kuchnia_dol
+    - light.kuchnia_gora
+    - light.kuchnia_stol_lewa
+    - light.kuchnia_stol_prawa
+    - light.lazienka_gora
+    - light.lazienka_lustro
+    - light.maly_pokoj_lewy
+    - light.maly_pokoj_prawy
+    - light.sypialnia_gora
+    - light.yeelight_biurko
+    - light.yeelight_livingroom
+    - light.yeelight_livingroom2
+    - light.yeelight_sypialnia
+    - light.led0_50_3
+    - light.led_projektor_3
+    - switch.podlewanie_2
+    - switch.podlewanie_pom
+    - media_player.epson
+    - media_player.onkyo
+    - proximity.pati_to_home
+    - sensor.temperature_outside
+    - sensor.maly_pokoj_wilgotnosc
+    - sensor.maly_pokoj_temp
+    - sensor.maly_pokoj_cisnienie
+    - sensor.pms_temp
+    - sensor.pm10
+    - sensor.pm2_5
+    - sensor.pms_hum
+    - sensor.wilgoc
+    - switch.radio
+    - binary_sensor.pir_sensor
+    - sensor.odkurzanie_pomieszczen
+    - sensor.piwotemp
+    - input_number.night_day
+    - device_tracker.sm_g975f
+    - device_tracker.sm_n950f

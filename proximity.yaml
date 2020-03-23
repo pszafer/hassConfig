@@ -1,0 +1,14 @@
+pati_to_home:
+  zone: home
+  # ignored_zones:
+    # - PatiSzkola
+  devices:
+    - device_tracker.sm_n950f
+  tolerance: 50
+  unit_of_measurement: m
+pawel_to_home:
+  zone: home
+  devices:
+    - device_tracker.sm_g975f
+  tolerance: 50
+  unit_of_measurement: m

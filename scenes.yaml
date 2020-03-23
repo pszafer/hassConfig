@@ -1,0 +1,46 @@
+- name: Movie_Barwicka
+  entities:
+    light.yeelight_livingroom:
+      state: on
+      rgb_color:
+      - 20
+      - 20
+      - 50
+      brightness: 127
+    light.yeelight_livingroom2:
+      state: on
+      rgb_color:
+      - 20
+      - 20
+      - 50
+      brightness: 127
+
+- name: Football_Barwicka
+  entities:
+    light.yeelight_livingroom:
+      state: on
+      rgb_color:
+      - 124
+      - 252
+      - 0
+      brightness: 127
+
+- name: Film_Czluchowska
+  entities:
+    group.tv_room_lights:
+      state: on
+      rgb_color:
+      - 20
+      - 20
+      - 50
+      brightness: 127
+
+- name: Pilka_Czluchowska
+  entities:
+    group.tv_room_lights:
+      state: on
+      rgb_color:
+      - 124
+      - 252
+      - 0
+      brightness: 127

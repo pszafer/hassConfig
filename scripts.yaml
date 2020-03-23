@@ -1,0 +1,288 @@
+vacuum_living_kitchen:
+  alias: Vacuum Main Room
+  sequence:
+  - data:
+      command: app_zoned_clean
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      params:
+      - - 22500
+        - 25000
+        - 28500
+        - 30500
+        - 1
+    service: vacuum.send_command
+  - data:
+      entity_id: input_select.vacuum_state
+      option: mainroom
+    service: input_select.select_option
+vacuum_bathroom:
+  alias: Vacuum bathroom
+  sequence:
+  - data:
+      command: app_zoned_clean
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      params:
+      - - 30355
+        - 25942
+        - 30905
+        - 26442
+        - 1
+      - - 29601
+        - 26347
+        - 31401
+        - 28697
+        - 1
+    service: vacuum.send_command
+  - data:
+      entity_id: input_select.vacuum_state
+      option: bathroom
+    service: input_select.select_option
+vacuum_bedroom:
+  alias: Vacuum bedroom
+  sequence:
+  - data:
+      command: app_zoned_clean
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      params:
+      - - 31873
+        - 22031
+        - 35523
+        - 24781
+        - 1
+      - - 33752
+        - 21330
+        - 34802
+        - 22080
+        - 1
+    service: vacuum.send_command
+  - data:
+      entity_id: input_select.vacuum_state
+      option: bedroom
+    service: input_select.select_option
+vacuum_kitchen:
+  alias: Vacuum Kitchen
+  sequence:
+  - alias: ''
+    data:
+      command: app_zoned_clean
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      params:
+      - - 26145
+        - 24516
+        - 28645
+        - 29416
+        - 1
+    service: vacuum.send_command
+  - data:
+      entity_id: input_select.vacuum_state
+      option: kitchen
+    service: input_select.select_option
+vacuum_smallroom:
+  alias: Vacuum small room
+  sequence:
+  - data:
+      command: app_zoned_clean
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      params:
+      - - 31750
+        - 25000
+        - 36000
+        - 28500
+        - 1
+    service: vacuum.send_command
+  - data:
+      entity_id: input_select.vacuum_state
+      option: smallroom
+    service: input_select.select_option
+vacuum_hall:
+  alias: Vacuum Hallway
+  sequence:
+  - data:
+      command: app_zoned_clean
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      params:
+      - - 28200
+        - 20500
+        - 32000
+        - 26500
+        - 1
+      - - 31000
+        - 20500
+        - 33000
+        - 22200
+        - 1
+    service: vacuum.send_command
+  - data:
+      entity_id: input_select.vacuum_state
+      option: hallway
+    service: input_select.select_option
+vacuum_pause:
+  sequence:
+  - data:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+    service: vacuum.pause
+vacuum_resume:
+  sequence:
+  - data:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      command: resume_zoned_clean
+    service: vacuum.send_command
+hallway_light_turnoff:
+  alias: Hallway light turn off
+  sequence:
+  - delay: 00:05:00
+  - data:
+      entity_id: light.korytarz
+    service: light.turn_off
+zachod:
+  alias: Zachod
+  sequence:
+  - data:
+      brightness: 140
+      hs_color:
+      - 29.863
+      - 85.882
+    data_template:
+      entity_id: '{{entity_id}}'
+    service: light.turn_on
+  - delay: '{{ time }}'
+  - data:
+      brightness: 140
+      hs_color:
+      - 15.068
+      - 85.882
+    service: light.turn_on
+    data_template:
+      entity_id: '{{entity_id}}'
+  - delay: '{{ time }}'
+  - data:
+      brightness: 70
+      hs_color:
+      - 15.068
+      - 85.882
+    data_template:
+      entity_id: '{{entity_id}}'
+    service: light.turn_on
+  - delay: '{{ time }}'
+  - data:
+      brightness: 70
+      hs_color:
+      - 0
+      - 85.882
+    data_template:
+      entity_id: '{{entity_id}}'
+    service: light.turn_on
+  - delay: '{{ time }}'
+  - data:
+      brightness: 20
+      hs_color:
+      - 0
+      - 85.882
+    data_template:
+      entity_id: '{{entity_id}}'
+    service: light.turn_on
+  - delay: '{{ time }}'
+  - data:
+      brightness: 10
+      hs_color:
+      - 0
+      - 85.882
+    data_template:
+      entity_id: '{{entity_id}}'
+    service: light.turn_on
+  - delay: '{{ time }}'
+  - data_template:
+      entity_id: '{{entity_id}}'
+    service: light.turn_off
+zachod_salon:
+  sequence:
+  - data:
+      entity_id: group.salon_barwicka_lights
+    service: script.zachod
+zachod_bedroom:
+  sequence:
+  - data:
+      entity_id: light.yeelight_sypialnia
+      time: 00:00:40
+    service: script.zachod
+zachod_bedside:
+  sequence:
+  - data:
+      entity_id: light.bedside
+    service: script.zachod
+'1531656411641':
+  alias: close cover
+  sequence:
+  - data:
+      entity_id: cover.roleta_balkon_2
+    service: cover.close_cover
+'1531656433052':
+  alias: open cover
+  sequence:
+  - data:
+      entity_id: cover.roleta_okno_1
+    service: cover.open_cover
+onkyo_radio_on:
+  alias: onkyo radio on
+  sequence:
+  - data:
+      entity_id: media_player.onkyo
+    service: media_player.turn_on
+  - data:
+      entity_id: media_player.onkyo
+      source: fm
+    service: media_player.select_source
+onkyo_radio_off:
+  alias: onkyo radio off
+  sequence:
+  - data:
+      entity_id: media_player.onkyo
+    service: media_player.turn_off
+change_color:
+  sequence:
+    service: script.real_change_color
+    data_template:
+      id: '{{ lighttoturnon }}'
+      colors: '{% set domain, device = lighttoturnon.split(''.'') %} {%- set hs_color
+        = states[domain][device][''attributes''][''hs_color''] %} {% if hs_color ==
+        (0.0, 0.0) %} yellow, 60.0, 85.882 {% elif hs_color == (60.0, 85.882) %} green,
+        120.0, 85.882 {% elif hs_color == (120.0, 85.882) %} seledin, 180.0, 85.882
+        {% elif hs_color == (180.0, 85.882) %} blue, 224.932, 85.882 {% elif hs_color
+        == (224.932, 85.882) %} violet, 284.932, 85.882 {% elif hs_color == (284.932,
+        85.882) %} red, 0.0, 100.0 {% elif hs_color == (0.0, 100.0) %} orange, 29.882,
+        100.0 {% else %} white, 0.0, 0.0 {% endif %}'
+real_change_color:
+  sequence:
+    service: light.turn_on
+    data_template:
+      entity_id: '{{ id }}'
+      hs_color:
+      - '{{ colors.split(",")[1] | float }}'
+      - '{{ colors.split(",")[2] | float }}'
+'1543099592544':
+  alias: turn off sypialnia in 5 minutes
+  sequence:
+  - delay: 00:05:00
+  - data:
+      entity_id: light.yeelight_sypialnia
+    service: light.turn_off
+weather_message:
+  sequence:
+    service: notify.html5_patisamsung
+    data_template:
+      title: Prognoza dla Pati
+      message: Hej Pati, teraz na dworze jest {{ states("sensor.temperature_outside")
+        }}. {% if states("sensor.temperature_outside") < states("sensor.weather_temperature")
+        -%} Ma być cieplej. Ma być {{ states("sensor.weather_temperature") }}. {%
+        else %} Ma być zimniej. Ma być {{ states("sensor.weather_temperature") }}
+        {% endif -%} No i prawdopodobnie {{ states("sensor.dark_sky_summary") }}
+      data:
+        url: https://hass.velomelon.com/lovelace/9
+'1564493332436':
+  alias: antyradio
+  sequence:
+  - data:
+      entity_id: media_player.onkyo
+      media_content_id: '1'
+      media_content_type: radio
+    service: media_player.play_media

@@ -1,0 +1,144 @@
+
+#- platform: yeelight_bt
+#  devices:
+#    Bedside:
+#      mac: 'f8:24:41:e8:96:34'
+
+- platform: mqtt
+  name: "Korytarz"
+  command_topic: "cmnd/korytarz/POWER"
+  state_topic: "stat/korytarz/POWER"
+
+- platform: mqtt
+  name: "Maly pokoj lewy"
+  command_topic: "cmnd/maly_pokoj/POWER1"
+  state_topic: "stat/maly_pokoj/POWER1"
+
+- platform: mqtt
+  name: "Maly pokoj prawy"
+  command_topic: "cmnd/maly_pokoj/POWER2"
+  state_topic: "stat/maly_pokoj/POWER2"
+
+- platform: mqtt
+  name: "Kuchnia dol"
+  command_topic: "cmnd/kuchnia/POWER1"
+  state_topic: "stat/kuchnia/POWER1"
+
+- platform: mqtt
+  name: "Kuchnia gora"
+  command_topic: "cmnd/kuchnia/POWER2"
+  state_topic: "stat/kuchnia/POWER2"
+
+- platform: mqtt
+  name: "Kuchnia stol lewa"
+  command_topic: "cmnd/kuchnia_stol/POWER1"
+  state_topic: "stat/kuchnia_stol/POWER1"
+- platform: mqtt
+  name: "Kuchnia stol prawa"
+  command_topic: "cmnd/kuchnia_stol/POWER2"
+  state_topic: "stat/kuchnia_stol/POWER2"
+
+- platform: mqtt
+  name: "Lazienka gora"
+  command_topic: "cmnd/lazienka/POWER2"
+  state_topic: "stat/lazienka/POWER2"
+
+- platform: mqtt
+  name: "Lazienka lustro"
+  command_topic: "cmnd/lazienka/POWER1"
+  state_topic: "stat/lazienka/POWER1"
+
+- platform: mqtt
+  name: "Sypialnia gora"
+  command_topic: "cmnd/sypialnia_gora/POWER"
+  state_topic: "stat/sypialnia_gora/POWER"
+
+- platform: mqtt
+  name: "Choinka light"
+  command_topic: "cmnd/choinka/POWER"
+  state_topic: "stat/choinka/POWER"
+
+- platform: mqtt
+  name: "LED light"
+  command_topic: "cmnd/led/POWER"
+  state_topic: "tele/led/STATE"
+  state_value_template: "{{value_json.POWER}}"
+  availability_topic: "tele/led/LWT"
+  brightness_command_topic: "cmnd/led/Dimmer"
+  brightness_state_topic: "tele/led/STATE"
+  brightness_scale: 100
+  on_command_type: "brightness"
+  brightness_value_template: "{{value_json.Dimmer}}"
+  color_temp_command_topic: "cmnd/led/CT"
+  color_temp_state_topic: "tele/led/STATE"
+  color_temp_value_template: "{{value_json.CT}}"
+  rgb_command_topic: "cmnd/led/Color2"
+  rgb_state_topic: "tele/led/STATE"
+  rgb_value_template: "{{value_json.Color.split(',')[0:3]|join(',')}}"
+  effect_command_topic: "cmnd/led/Scheme"
+  effect_state_topic: "tele/led/STATE"
+  effect_value_template: "{{value_json.Scheme}}"
+  effect_list:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 8
+  payload_on: "ON"
+  payload_off: "OFF"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+
+
+- platform: group
+  name: kitchen table lights
+  entities:
+    - light.kuchnia_stol_lewa
+    - light.kuchnia_stol_prawa
+
+- platform: group
+  name: Cala tasma
+  entities:
+    - light.led_projektor_3
+    - light.led0_50_3
+
+- platform: group
+  name: small room lights
+  entities:
+    - light.maly_pokoj_lewy
+    - light.maly_pokoj_prawy
+    - light.yeelight_biurko
+
+- platform: group
+  name: small room main lights
+  entities:
+    - light.maly_pokoj_lewy
+    - light.maly_pokoj_prawy
+
+- platform: group
+  name: bedroom lights
+  entities:
+    - light.yeelight_sypialnia
+    - light.sypialnia_gora
+    - light.bedside
+
+- platform: group
+  name: livingroom lights
+  entities:
+    - light.yeelight_livingroom
+    - light.yeelight_livingroom2
+
+- platform: group
+  name: kitchen lights
+  entities:
+    - light.kuchnia_stol_lewa
+    - light.kuchnia_stol_prawa
+    - light.kuchnia_dol
+    - light.kuchnia_gora
+
+- platform: group
+  name: bathroom lights
+  entities:
+    - light.lazienka_lustro
+    - light.lazienka_gora

@@ -1,0 +1,51 @@
+salon_barwicka_lights:
+  name: Lampy Salon
+  entities:
+    - light.yeelight_livingroom
+    - light.yeelight_livingroom2
+
+salon_barwicka:
+  name: Salon
+  entities:
+    - media_player.onkyo
+    - media_player.epson
+    - group.salon_barwicka_lights
+    - cover.roleta_balkon_1
+    - cover.roleta_balkon_2
+    - cover.okno_salon
+
+living_room:
+  name: living room
+  entities:
+    - cover.roleta_balkon_1
+    - cover.roleta_balkon_2
+    - cover.okno_salon
+
+bedroom:
+  name: Sypialnia
+  entities:
+    - light.yeelight_sypialnia
+    - light.bedside
+
+temperature:
+  name: Temperature
+  entities:
+    - sensor.temperature
+    - sensor.humidity
+    - sensor.pressure
+
+barwicka:
+  name: Barwicka
+  entities:
+    - group.salon_barwicka
+    - group.kuchnia
+    - group.bedroom
+    - scene.movie_barwicka
+    - scene.football_barwicka
+    - group.temperature
+
+livingroom_players:
+  name: Players living room
+  entities:
+    - media_player.epson
+    - media_player.onkyo
